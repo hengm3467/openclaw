@@ -15,6 +15,11 @@ export const MOONSHOT_DEFAULT_CONTEXT_WINDOW = 256000;
 export const MOONSHOT_DEFAULT_MAX_TOKENS = 8192;
 export const KIMI_CODING_MODEL_ID = "k2p5";
 export const KIMI_CODING_MODEL_REF = `kimi-coding/${KIMI_CODING_MODEL_ID}`;
+export const STEPFUN_BASE_URL = "https://api.stepfun.ai/v1";
+export const STEPFUN_DEFAULT_MODEL_ID = "step-3.5-flash";
+export const STEPFUN_DEFAULT_MODEL_REF = `stepfun/${STEPFUN_DEFAULT_MODEL_ID}`;
+export const STEPFUN_DEFAULT_CONTEXT_WINDOW = 256000;
+export const STEPFUN_DEFAULT_MAX_TOKENS = 8192;
 
 // Pricing: MiniMax doesn't publish public rates. Override in models.json for accurate costs.
 export const MINIMAX_API_COST = {
@@ -36,6 +41,12 @@ export const MINIMAX_LM_STUDIO_COST = {
   cacheWrite: 0,
 };
 export const MOONSHOT_DEFAULT_COST = {
+  input: 0,
+  output: 0,
+  cacheRead: 0,
+  cacheWrite: 0,
+};
+export const STEPFUN_DEFAULT_COST = {
   input: 0,
   output: 0,
   cacheRead: 0,
@@ -90,6 +101,18 @@ export function buildMoonshotModelDefinition(): ModelDefinitionConfig {
     cost: MOONSHOT_DEFAULT_COST,
     contextWindow: MOONSHOT_DEFAULT_CONTEXT_WINDOW,
     maxTokens: MOONSHOT_DEFAULT_MAX_TOKENS,
+  };
+}
+
+export function buildStepfunModelDefinition(): ModelDefinitionConfig {
+  return {
+    id: STEPFUN_DEFAULT_MODEL_ID,
+    name: "Step 3.5 Flash",
+    reasoning: true,
+    input: ["text"],
+    cost: STEPFUN_DEFAULT_COST,
+    contextWindow: STEPFUN_DEFAULT_CONTEXT_WINDOW,
+    maxTokens: STEPFUN_DEFAULT_MAX_TOKENS,
   };
 }
 
